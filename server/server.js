@@ -27,15 +27,4 @@ const SERVER_URL = process.env.RENDER_URL || `https://rat-server-2299.onrender.c
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-
-  // Keep server awake by pinging itself every 14 minutes
-  setInterval(() => {
-    axios.get(SERVER_URL)
-      .then(response => {
-        console.log(`Self-ping at ${new Date().toISOString()}: Status ${response.status}`);
-      })
-      .catch(error => {
-        console.error(`Self-ping failed at ${new Date().toISOString()}:`, error.message);
-      });
-  }, 740000); // 14 minutes (Render auto-spins down after 15 mins)
 });
